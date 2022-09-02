@@ -44,20 +44,38 @@ public class Reader{
 
         if(ans){
             Analyzer a = new Analyzer(nums);
-            System.out.println("Median: " + a.getMedian(nums));
-            System.out.println("Mean: " + a.getMean(nums));
-            System.out.println("Mode: " + a.getMode(nums));
-            System.out.println("Variance: " + a.getVariance(nums));
-            System.out.println("Standard Deviation: " + a.getSD(nums));
-            System.out.println("Minimum Value: " + a.getMinVal(nums));
-            System.out.println("Maximum Value: " + a.getMaxVal(nums));
+
+            System.out.println("Median: " + a.median);
+            System.out.println("Mean: " + a.mean);
+            System.out.println("Mode: " + a.mode);
+            System.out.println("Variance: " + a.variance);
+            System.out.println("Standard Deviation: " + a.sd);
+            System.out.println("Minimum Value: " + a.minV);
+            System.out.println("Maximum Value: " + a.maxV);
+            System.out.println("Maximum Occurences: Value " + a.mode + " , count " + a.count);
         }
     }
 }
 
 class Analyzer{
+    double median;
+    double mean;
+    ArrayList<Double> mode;
+    double variance;
+    double sd;
+    double minV;
+    double maxV;
+    double count;
+
     Analyzer(ArrayList<Double> nums){
-        System.out.println("hello");
+        median = getMedian(nums);
+        mean = getMean(nums);
+        mode = getMode(nums);
+        variance = getVariance(nums);
+        sd = getSD(nums);
+        minV = getMinVal(nums);
+        maxV = getMaxVal(nums);
+        count = getMaxOcc(nums, mode);
     }
 
     public static double getMedian(ArrayList<Double> nums){
@@ -109,6 +127,7 @@ class Analyzer{
                 }
             }
         }
+        //mode.add(maxCount);
         return mode;
     }  
 
@@ -149,4 +168,32 @@ class Analyzer{
     public static double getMaxVal(ArrayList<Double> nums){
         return nums.get(nums.size()-1);
     }
+
+    public static double getMaxOcc(ArrayList<Double> nums, ArrayList<Double> modes){
+        //ArrayList<Double> ans = new ArrayList<Double>();
+        double mode = modes.get(0);
+        double count = 0;
+        for(int i = 0; i < nums.size(); i++){
+            if(nums.get(i) == mode){
+                count++;
+            }
+        }
+
+        /*for(int i = 0; i < modes.size(); i++){
+            ans.add(modes.get(i));
+        }
+        ans.add(count);*/
+
+        //MaxOcc ans = new MaxOcc(modes, count);
+        return count;
+    }
 }
+
+/*class MaxOcc{
+    ArrayList<Double> value;
+    double count;
+    MaxOcc(ArrayList<Double> values, double counts){
+        value = values;
+        count = counts;
+    }
+}*/
