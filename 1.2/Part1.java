@@ -4,17 +4,15 @@ import java.util.*;
 
 public class Part1{
     public static void main(String[] args) throws Exception{
-        Reader r = new Reader();
+        Reader r = new Reader();    // instantiate the objects
         Analyzer a = new Analyzer();
-        ArrayList<Double> data = r.getData();
-        a.analyze(data);
+        ArrayList<Double> data = r.getData();   // read data from the user
+        a.analyze(data);    // perform all calculations
     }
 }
 
-class Reader{
-    //Reader(){}
-
-    public static boolean isNum(String strNum) {
+class Reader{   //Reader Class
+    public static boolean isNum(String strNum){    //Checks if the input is a number
         if(strNum == null){
             return false;
         }
@@ -27,21 +25,21 @@ class Reader{
         return true;
     }
 
-    public static ArrayList<Double> getData(){
+    public static ArrayList<Double> getData(){  //Getting the data
         Scanner s = new Scanner(System.in);
         ArrayList<Double> data = new ArrayList<Double>();
 
         String nl = s.nextLine();
 
         while(nl != null || nl == "-1"){
-            if(nl.isEmpty()){
+            if(nl.isEmpty()){   //Check for enter
                 break;
             }
-            else if(!isNum(nl)){
+            else if(!isNum(nl)){    //Check for not number
                 System.out.println("Number not entered");
                 nl = s.nextLine();
             }
-            else if(s.hasNextLine()){
+            else if(s.hasNextLine()){   //is number
                 data.add(Double.valueOf(nl));
                 nl = s.nextLine();
             }
@@ -53,8 +51,8 @@ class Reader{
     }
 }
 
-class Analyzer{
-    double median;
+class Analyzer{ //The analyzer class
+    double median;  //those good good things that I need for this project
     double mean;
     ArrayList<Double> mode;
     double variance;
@@ -63,9 +61,7 @@ class Analyzer{
     double maxV;
     double count;
 
-    Analyzer(){}
-
-    public static void analyze(ArrayList<Double> nums){
+    public static void analyze(ArrayList<Double> nums){ //Printing all the data from the calculations
         System.out.println("Median: " + getMedian(nums));
         System.out.println("Mean: " + getMean(nums));
         System.out.println("Mode: " + getMode(nums));
@@ -76,7 +72,7 @@ class Analyzer{
         System.out.println("Maximum Occurences: Value " + getMode(nums) + " , count " + getMaxOcc(nums, getMode(nums)));
     }
 
-    public static double getMedian(ArrayList<Double> nums){
+    public static double getMedian(ArrayList<Double> nums){ //Gets median
         Collections.sort(nums);
         double median;
         if (nums.size()%2 == 0){
@@ -88,7 +84,7 @@ class Analyzer{
         return median;
     }
 
-    public static double getMean(ArrayList<Double> nums){
+    public static double getMean(ArrayList<Double> nums){   //Gets mean
         double sum = 0;
         for (int i = 0; i < nums.size(); i++){
             sum += nums.get(i);
@@ -96,7 +92,7 @@ class Analyzer{
         return (sum/nums.size());
     }
 
-    public static ArrayList<Double> getMode(ArrayList<Double> nums){
+    public static ArrayList<Double> getMode(ArrayList<Double> nums){    //Gets mode (I checked for multiple modes since I'm cool like that)
         ArrayList<Double> mode = new ArrayList<Double>();
         double maxCount = 0;
 
@@ -128,7 +124,7 @@ class Analyzer{
         return mode;
     }  
 
-    public static double getVariance(ArrayList<Double> nums){
+    public static double getVariance(ArrayList<Double> nums){   //Gets Variance
         double mean = getMean(nums);
         double temp = 0;
         for(int i = 0; i < nums.size(); i++){
@@ -137,7 +133,7 @@ class Analyzer{
         return (temp/(nums.size()-1));
     }
 
-    public static double getSqrt(double num){
+    public static double getSqrt(double num){   //Since we cannot use Math gest the sqrt
         double temp;
         double hold = num/2;
         do{
@@ -149,7 +145,7 @@ class Analyzer{
         return hold;
     }
 
-    public static double getSD(ArrayList<Double> nums){
+    public static double getSD(ArrayList<Double> nums){ //gets the standard deviation (Population too lazy to check whether to use population or sample)
         double mean = getMean(nums);
         double temp = 0;
         for(int i = 0; i < nums.size(); i++){
@@ -158,15 +154,15 @@ class Analyzer{
         return getSqrt((temp/(nums.size())));
     }
 
-    public static double getMinVal(ArrayList<Double> nums){
+    public static double getMinVal(ArrayList<Double> nums){ //Gets the minimum value
         return nums.get(0);
     }
 
-    public static double getMaxVal(ArrayList<Double> nums){
+    public static double getMaxVal(ArrayList<Double> nums){ //Gets the maximum value
         return nums.get(nums.size()-1);
     }
 
-    public static double getMaxOcc(ArrayList<Double> nums, ArrayList<Double> modes){
+    public static double getMaxOcc(ArrayList<Double> nums, ArrayList<Double> modes){    //very repetative tbh but gets mode and ammount of times mode occures
         double mode = modes.get(0);
         double count = 0;
         for(int i = 0; i < nums.size(); i++){

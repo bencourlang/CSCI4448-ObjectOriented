@@ -1,22 +1,26 @@
 import java.util.Scanner;
-import java.util.ArrayList; 
-//import java.util.*;
-import java.util.Arrays;
 
 public class Part2 {
-    public static void main(String[] args) {
-        Palindrome p = new Palindrome();
-        p.doTheThing();
+    public static void main(String[] args){    //That main
+        Processor p = new Processor();
+        String bippity = p.Read();
+        String boppity = p.Clean(bippity);
+        char[] boo  = p.Sort(boppity);
+        String ILoveRenamingThingsForAssingments = p.palindrome(boo);
+        System.out.println(ILoveRenamingThingsForAssingments);
     }
 }
 
-class Palindrome{
-    public static void doTheThing(){
+class Processor{   //the lovely class of a word I can very much pronounce easily
+    public static String Read(){
         Scanner s = new Scanner(System.in);
-
-        String thing = s.nextLine();
+        return s.nextLine();
+    }
+    public static String Clean(String thing){
         String upperThing = thing.toUpperCase();
-        String upperNoSpaceThing = upperThing.replaceAll("\\s", "");
+        return upperThing.replaceAll("\\s", "");
+    }
+    public static char[] Sort(String upperNoSpaceThing){
         char arr[] = upperNoSpaceThing.toCharArray();
 
         for(int i = 0; i < arr.length; i++){
@@ -29,6 +33,9 @@ class Palindrome{
                 }
             }
         }
+        return arr;
+    }
+    public static String palindrome(char[] arr){
         String heeyup = "";
 
         for(int i = arr.length-1; i > 0; i--){
@@ -37,6 +44,6 @@ class Palindrome{
         for(int i = 0; i < arr.length; i++){
             heeyup += arr[i];
         }
-        System.out.println(heeyup);
+        return heeyup;
     }
 }
