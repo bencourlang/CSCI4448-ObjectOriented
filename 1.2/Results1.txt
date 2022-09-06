@@ -1,0 +1,60 @@
+Int:
+
+1
+1
+1
+1
+2
+2
+2
+2
+3
+3
+3
+3
+4
+4
+5
+55
+4
+3
+3
+3
+
+Median: 3.0
+Mean: 5.25
+Mode: [3.0]
+Variance: 138.4078947368421
+Standard Deviation: 11.466799902326716
+Minimum Value: 1.0
+Maximum Value: 55.0
+Maximum Occurences: Value [3.0] , count 7.0
+
+
+
+Real Numbers:
+
+6.9
+4.20
+76.534      
+3645.2
+4.6 
+34.6
+52.772 
+6.4
+6.666
+0.66
+6.6666
+6.666 
+6.6
+6.6
+2234.234234
+
+Median: 6.666
+Mean: 406.6199222666666
+Mode: [6.6, 6.666]
+Variance: 1129241.2122873482
+Standard Deviation: 1026.6247926099998
+Minimum Value: 0.66
+Maximum Value: 3645.2
+Maximum Occurences: Value [6.6, 6.666] , count 2.0
