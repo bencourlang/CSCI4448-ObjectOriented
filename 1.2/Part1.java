@@ -2,7 +2,18 @@ import java.util.Scanner;
 import java.util.ArrayList; 
 import java.util.*;
 
-public class Reader{
+public class Part1{
+    public static void main(String[] args) throws Exception{
+        Reader r = new Reader();
+        Analyzer a = new Analyzer();
+        ArrayList<Double> data = r.getData();
+        a.analyze(data);
+    }
+}
+
+class Reader{
+    //Reader(){}
+
     public static boolean isNum(String strNum) {
         if(strNum == null){
             return false;
@@ -16,11 +27,9 @@ public class Reader{
         return true;
     }
 
-    public static void main(String[] args) throws Exception{
+    public static ArrayList<Double> getData(){
         Scanner s = new Scanner(System.in);
-
-        ArrayList<Double> nums = new ArrayList<Double>();
-        boolean ans = false;
+        ArrayList<Double> data = new ArrayList<Double>();
 
         String nl = s.nextLine();
 
@@ -33,27 +42,14 @@ public class Reader{
                 nl = s.nextLine();
             }
             else if(s.hasNextLine()){
-                nums.add(Double.valueOf(nl));
+                data.add(Double.valueOf(nl));
                 nl = s.nextLine();
-                ans = true;
             }
             else{
                 nl = null;
             }
         }
-
-        if(ans){
-            Analyzer a = new Analyzer(nums);
-
-            System.out.println("Median: " + a.median);
-            System.out.println("Mean: " + a.mean);
-            System.out.println("Mode: " + a.mode);
-            System.out.println("Variance: " + a.variance);
-            System.out.println("Standard Deviation: " + a.sd);
-            System.out.println("Minimum Value: " + a.minV);
-            System.out.println("Maximum Value: " + a.maxV);
-            System.out.println("Maximum Occurences: Value " + a.mode + " , count " + a.count);
-        }
+        return data;
     }
 }
 
@@ -67,15 +63,17 @@ class Analyzer{
     double maxV;
     double count;
 
-    Analyzer(ArrayList<Double> nums){
-        median = getMedian(nums);
-        mean = getMean(nums);
-        mode = getMode(nums);
-        variance = getVariance(nums);
-        sd = getSD(nums);
-        minV = getMinVal(nums);
-        maxV = getMaxVal(nums);
-        count = getMaxOcc(nums, mode);
+    Analyzer(){}
+
+    public static void analyze(ArrayList<Double> nums){
+        System.out.println("Median: " + getMedian(nums));
+        System.out.println("Mean: " + getMean(nums));
+        System.out.println("Mode: " + getMode(nums));
+        System.out.println("Variance: " + getVariance(nums));
+        System.out.println("Standard Deviation: " + getSD(nums));
+        System.out.println("Minimum Value: " + getMinVal(nums));
+        System.out.println("Maximum Value: " + getMaxVal(nums));
+        System.out.println("Maximum Occurences: Value " + getMode(nums) + " , count " + getMaxOcc(nums, getMode(nums)));
     }
 
     public static double getMedian(ArrayList<Double> nums){
@@ -127,7 +125,6 @@ class Analyzer{
                 }
             }
         }
-        //mode.add(maxCount);
         return mode;
     }  
 
@@ -170,7 +167,6 @@ class Analyzer{
     }
 
     public static double getMaxOcc(ArrayList<Double> nums, ArrayList<Double> modes){
-        //ArrayList<Double> ans = new ArrayList<Double>();
         double mode = modes.get(0);
         double count = 0;
         for(int i = 0; i < nums.size(); i++){
@@ -178,22 +174,6 @@ class Analyzer{
                 count++;
             }
         }
-
-        /*for(int i = 0; i < modes.size(); i++){
-            ans.add(modes.get(i));
-        }
-        ans.add(count);*/
-
-        //MaxOcc ans = new MaxOcc(modes, count);
         return count;
     }
 }
-
-/*class MaxOcc{
-    ArrayList<Double> value;
-    double count;
-    MaxOcc(ArrayList<Double> values, double counts){
-        value = values;
-        count = counts;
-    }
-}*/
