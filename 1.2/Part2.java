@@ -12,15 +12,15 @@ public class Part2 {
 }
 
 class Processor{   //the lovely class of a word I can very much pronounce easily
-    public static String Read(){
+    public static String Read(){    //Read reads the line input
         Scanner s = new Scanner(System.in);
         return s.nextLine();
     }
-    public static String Clean(String thing){
+    public static String Clean(String thing){   //clean changes to upper case and removes spaces
         String upperThing = thing.toUpperCase();
         return upperThing.replaceAll("\\s", "");
     }
-    public static char[] Sort(String upperNoSpaceThing){
+    public static char[] Sort(String upperNoSpaceThing){    //sort puts its into a char array and makes it alphabetical
         char arr[] = upperNoSpaceThing.toCharArray();
 
         for(int i = 0; i < arr.length; i++){
@@ -35,7 +35,7 @@ class Processor{   //the lovely class of a word I can very much pronounce easily
         }
         return arr;
     }
-    public static String palindrome(char[] arr){
+    public static String palindrome(char[] arr){    //palindromes it
         String heeyup = "";
 
         for(int i = arr.length-1; i > 0; i--){
